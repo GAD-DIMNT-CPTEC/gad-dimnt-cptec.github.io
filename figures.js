@@ -7,6 +7,18 @@
     `${base}cron_scripts/anls_imgs/smna-fncep/SMNA-FNCEP/${cycle}/Surface_temperature/1000/0.jpg`,
     `${base}online/static/data/smna-fncep/plots/${cycle}/${cycle}_convergence.webp`
   ];
+  function monitorURL(cycle, index) {
+    const url = new URL('https://gad-dimnt-cptec.github.io/SMNAMonitorStatic/');
+    url.searchParams.set('environment', 'smna-fn');
+    url.searchParams.set('cycle', cycle);
+    if(index===0) {
+      url.searchParams.set('variable', 'Surface_temperature');
+      url.searchParams.set('level', '1000');
+      url.searchParams.set('forecast', '0');
+    } else url.searchParams.set('chart', 'convergence');
+    url.hash=index===0?'maps':'gsi';
+    return url.href;
+  }
   let current = {cycle: container.dataset.cycle, urls: urls(container.dataset.cycle)};
   let objectURLs = [], busy = false;
   function yesterdayCycle() {
@@ -27,6 +39,7 @@
       figure.querySelector('figcaption strong').textContent=copy[i];
       figure.querySelector('figcaption span').textContent=`${copy[i+2]} · ${date}${i===0?' · +0 h':''}`;
       figure.querySelector('figcaption small').textContent=copy[4];
+      figure.querySelector('a').href=monitorURL(c,i);
       figure.querySelector('img').alt=`SMNA · ${copy[i]} · ${date}`;
     });
   }
@@ -63,7 +76,7 @@
     try { await Promise.all(next.map(decode)); } catch(error) { next.forEach(URL.revokeObjectURL);throw error; }
     // Both images have decoded successfully; replace both in the same browser frame.
     await new Promise(resolve=>requestAnimationFrame(()=>{
-      figures.forEach((figure,i)=>{figure.querySelector('img').src=next[i];figure.querySelector('a').href=pair.urls[i];});
+      figures.forEach((figure,i)=>{figure.querySelector('img').src=next[i];});
       current=pair;container.dataset.cycle=pair.cycle;captions();resolve();
     }));
     objectURLs.forEach(URL.revokeObjectURL);objectURLs=next;
