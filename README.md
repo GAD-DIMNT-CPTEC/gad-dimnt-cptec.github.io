@@ -18,7 +18,7 @@ Abra http://localhost:8765/. O site utiliza HTML, CSS e JavaScript, sem etapa de
 
 ## Figuras do monitoramento
 
-A análise de temperatura à superfície e as curvas de minimização são obtidas do monitoramento público do SMNA. A página consulta o ciclo de 00 UTC do dia anterior, segundo o calendário de America/Sao_Paulo, ao abrir, ao retornar à aba e a cada 30 minutos. As duas imagens só são substituídas quando ambas estão disponíveis e decodificadas. O último par é salvo no navegador via IndexedDB; os arquivos em assets são a reserva inicial.
+A análise de temperatura à superfície e as curvas de minimização são obtidas do monitoramento público do SMNA. A página consulta o ciclo de 00 UTC do dia anterior, segundo o calendário de America/Sao_Paulo, ao abrir, ao retornar à aba e a cada 30 minutos. As duas imagens só são substituídas quando ambas estão disponíveis e decodificadas. O último par é salvo no navegador via IndexedDB; os arquivos em assets são a reserva inicial (12/10/2026 às 00 UTC). Respostas sem Content-Type também são aceitas quando ambas as imagens decodificam corretamente.
 
 ## Publicação
 

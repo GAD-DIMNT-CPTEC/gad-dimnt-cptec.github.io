@@ -45,3 +45,13 @@ abbr[title]{text-decoration:underline dotted;text-underline-offset:4px;text-deco
 .person .link-icon{font-size:12px;line-height:1;display:inline-block;width:16px;text-align:center}
 
 .person .member-position{margin:0 0 7px;color:var(--muted)}
+
+.visit-counter{display:flex;flex-direction:column;align-items:flex-start;gap:8px;align-self:center}.visit-preview{display:inline-flex;align-items:center;border:1px solid #536977;border-radius:4px;overflow:hidden;font-size:12px;line-height:1.5}.visit-preview>span{padding:5px 10px;background:#263f50}.visit-preview>strong{padding:5px 12px;background:#056b9a;color:white;font-variant-numeric:tabular-nums}.visit-counter small{font-size:12px;color:#bfd0da}.visit-counter img{height:22px;width:auto}.visit-counter [hidden]{display:none}@media(max-width:600px){.visit-counter{align-self:flex-start}}
+
+/* Shared institutional identity: two lines, aligned with the INPE logo. */
+.brand,.footer-brand{align-items:center;gap:12px}.brand-copy{font-family:inherit;font-size:14px;font-weight:400;line-height:1.65;gap:0}.brand-copy>span{font:inherit;letter-spacing:0;max-width:none;color:inherit;white-space:nowrap}.brand .inpe-logo,.footer-brand .inpe-logo{width:60px;height:60px}.brand{flex-shrink:0}footer .brand-copy>span:last-child{color:#bfd0da}.brand .brand-copy>span:last-child{color:var(--muted)}a[target="_blank"]:not(:has(img))::after{content:" ↗";font-size:.85em;white-space:nowrap}@media(max-width:600px){.brand-copy{font-size:14px}.brand .inpe-logo,.footer-brand .inpe-logo{width:54px;height:54px}.brand-copy>span{white-space:normal}}
+
+/* Card links use a column layout; keep the external arrow in their label. */
+a.repo[target="_blank"]::after{content:none}a.repo[target="_blank"]>span::after{content:" ↗";font-size:.85em;white-space:nowrap}
+
+.footer-link-icon{display:inline-block;width:20px;margin-right:4px;font-size:12px;line-height:1;text-align:center}

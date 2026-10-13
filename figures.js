@@ -90,7 +90,8 @@
       const sources=urls(cycle);
       const blobs=await Promise.all(sources.map(async url=>{
         const response=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(20000)});
-        if(!response.ok||!response.headers.get('content-type')?.startsWith('image/'))throw new Error('Image not published');
+        // Some valid WebP responses omit Content-Type. decode() validates both images before commit.
+        if(!response.ok)throw new Error('Image not published');
         return response.blob();
       }));
       const pair={cycle,urls:sources,blobs};
