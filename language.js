@@ -3,6 +3,7 @@ Object.assign(translations, {"OPORTUNIDADE DE BOLSA": {"en": "RESEARCH FELLOWSHI
 Object.assign(translations, {"Colaboradores": {"en": "Collaborators", "es": "Colaboradores"}});
 Object.assign(translations, {"Tecnologista": {"en": "Technologist", "es": "Tecnologista"}, "Pesquisador": {"en": "Researcher", "es": "Investigador"}, "Pesquisadora": {"en": "Researcher", "es": "Investigadora"}});
 Object.assign(translations, {"Visitas": {"en": "Visits", "es": "Visitas"}, "Prévia local": {"en": "Local preview", "es": "Vista previa local"}});
+Object.assign(translations, {"Vídeos": {"en": "Videos", "es": "Vídeos"}, "06 / VÍDEOS": {"en": "06 / VIDEOS", "es": "06 / VÍDEOS"}, "Playlists no YouTube": {"en": "YouTube playlists", "es": "Listas de reproducción en YouTube"}, "Conteúdo em vídeo sobre as atividades e ferramentas do grupo.": {"en": "Video content about the group's activities and tools.", "es": "Contenido en vídeo sobre las actividades y herramientas del grupo."}, "Vídeos do Workshop DAS-DIMNT.": {"en": "Videos from the DAS-DIMNT Workshop.", "es": "Vídeos del Workshop DAS-DIMNT."}, "Vídeos sobre o trabalho do grupo.": {"en": "Videos about the group's work.", "es": "Vídeos sobre el trabajo del grupo."}, "Vídeos sobre o SCANTEC.": {"en": "Videos about SCANTEC.", "es": "Vídeos sobre SCANTEC."}, "Assistir no YouTube": {"en": "Watch on YouTube", "es": "Ver en YouTube"}});
 (() => {
  const select=document.getElementById('language');
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
