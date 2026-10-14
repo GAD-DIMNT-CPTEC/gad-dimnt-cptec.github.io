@@ -57,3 +57,8 @@ a.repo[target="_blank"]::after{content:none}a.repo[target="_blank"]>span::after{
 .footer-link-icon{display:inline-block;width:20px;margin-right:4px;font-size:12px;line-height:1;text-align:center}
 
 .software-more{margin:24px 0 0;text-align:right}#software{padding-bottom:24px}
+
+.back-to-top{display:flex;justify-content:flex-end;margin-top:24px;font-size:14px}.intro>.back-to-top{grid-column:1/-1;width:100%;margin-top:0}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+footer{flex-wrap:wrap}.revision-info{flex-basis:100%;text-align:right;font-size:12px}.revision-info a{display:inline-block;margin:0}.revision-info code{font-size:12px}.revision-info small{display:block;color:#bfd0da;font-size:12px}@media(max-width:600px){.revision-info{text-align:left}}
