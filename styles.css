@@ -55,3 +55,5 @@ abbr[title]{text-decoration:underline dotted;text-underline-offset:4px;text-deco
 a.repo[target="_blank"]::after{content:none}a.repo[target="_blank"]>span::after{content:" ↗";font-size:.85em;white-space:nowrap}
 
 .footer-link-icon{display:inline-block;width:20px;margin-right:4px;font-size:12px;line-height:1;text-align:center}
+
+.software-more{margin:24px 0 0}
