@@ -21,10 +21,10 @@
   }
   let current = {cycle: container.dataset.cycle, urls: urls(container.dataset.cycle)};
   let objectURLs = [], busy = false;
-  function yesterdayCycle() {
+  function dailyCycle(daysAgo=0) {
     const parts = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
     const get = type => parts.find(part => part.type === type).value;
-    const date = new Date(Date.UTC(+get('year'), +get('month')-1, +get('day')-1));
+    const date = new Date(Date.UTC(+get('year'), +get('month')-1, +get('day')-daysAgo));
     return date.toISOString().slice(0,10).replaceAll('-','') + '00';
   }
   function captions() {
@@ -83,28 +83,35 @@
   }
   async function check() {
     if(busy)return;
-    const cycle=yesterdayCycle();
-    if(cycle<=current.cycle)return;
+    const today=dailyCycle();
+    if(today<=current.cycle)return;
     busy=true;
     try {
-      const sources=urls(cycle);
-      const blobs=await Promise.all(sources.map(async url=>{
-        const response=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(20000)});
-        // Some valid WebP responses omit Content-Type. decode() validates both images before commit.
-        if(!response.ok)throw new Error('Image not published');
-        return response.blob();
-      }));
-      const pair={cycle,urls:sources,blobs};
-      await commit(pair);
-      try { await savePair(pair); } catch (_) { /* Storage unavailable: keep the current pair for this visit. */ }
-    } catch (_) { /* Preserve both current images when either product is unavailable. */ }
-    finally { busy=false; }
+      // Prefer today; yesterday is a fallback only while today's pair is incomplete.
+      for(const cycle of [today,dailyCycle(1)]) {
+        if(cycle<=current.cycle)continue;
+        try {
+          const sources=urls(cycle);
+          const blobs=await Promise.all(sources.map(async url=>{
+            const response=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(20000)});
+            // The server may omit Content-Type; decode validates the images.
+            if(!response.ok)throw new Error('Image not published');
+            return response.blob();
+          }));
+          const pair={cycle,urls:sources,blobs};
+          await commit(pair);
+          try { await savePair(pair); } catch (_) {}
+          break;
+        } catch (_) { /* Try yesterday, preserving the current pair if unavailable. */ }
+      }
+    } finally { busy=false; }
   }
+
   async function start() {
     captions();
-    try {const saved=await cachedPair();if(saved&&saved.cycle>=current.cycle&&saved.cycle<=yesterdayCycle())await commit(saved);}catch(_){}
+    try {const saved=await cachedPair();if(saved&&saved.cycle>=current.cycle&&saved.cycle<=dailyCycle())await commit(saved);}catch(_){}
     await check();
-    setInterval(check,30*60*1000);
+    setInterval(check,5*60*1000);
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)check();});
   }
   document.addEventListener('gad-language-change',captions);
