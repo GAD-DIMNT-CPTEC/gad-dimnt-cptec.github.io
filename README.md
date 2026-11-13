@@ -23,3 +23,5 @@ A análise de temperatura à superfície e as curvas de minimização são obtid
 ## Publicação
 
 GitHub Pages publica a raiz da branch main. Os links externos abrem em nova aba.
+
+As verificações consultam novamente o ciclo já exibido, inclusive após recarregar a página. As imagens são baixadas com `cache: no-store` e parâmetro de atualização para evitar reutilizar arquivos anteriores após reprocessamento. O IndexedDB permanece como reserva em caso de falha; somente um par integralmente decodificado substitui o anterior. A validação detecta arquivos inválidos, mas não identifica defeitos científicos ou visuais em imagens que ainda são válidas.

@@ -84,16 +84,18 @@
   async function check() {
     if(busy)return;
     const today=dailyCycle();
-    if(today<=current.cycle)return;
     busy=true;
     try {
       // Prefer today; yesterday is a fallback only while today's pair is incomplete.
       for(const cycle of [today,dailyCycle(1)]) {
-        if(cycle<=current.cycle)continue;
+        if(cycle<current.cycle)continue;
         try {
           const sources=urls(cycle);
           const blobs=await Promise.all(sources.map(async url=>{
-            const response=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(20000)});
+            // Regenerated files keep the same cycle and URL. Bypass browser/proxy caches.
+            const freshURL=new URL(url);
+            freshURL.searchParams.set('_refresh',Date.now().toString());
+            const response=await fetch(freshURL.href,{cache:'no-store',signal:AbortSignal.timeout(20000)});
             // The server may omit Content-Type; decode validates the images.
             if(!response.ok)throw new Error('Image not published');
             return response.blob();
