@@ -8,6 +8,7 @@ Object.assign(translations, {"Saiba mais": {"en": "Learn more", "es": "Más info
 Object.assign(translations, {"Topo": {"en": "Top", "es": "Inicio"}});
 Object.assign(translations, {"Revisão": {"en": "Revision", "es": "Revisión"}, "Prévia com alterações locais": {"en": "Preview with local changes", "es": "Vista previa con cambios locales"}});
 Object.assign(translations, {"Contato com o administrador": {"en": "Contact the administrator", "es": "Contacto con el administrador"}});
+Object.assign(translations, {"Organização no PyPI": {"en": "Organization on PyPI", "es": "Organización en PyPI"}});
 (() => {
  const select=document.getElementById('language');
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);

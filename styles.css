@@ -62,3 +62,5 @@ a.repo[target="_blank"]::after{content:none}a.repo[target="_blank"]>span::after{
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 footer{flex-wrap:wrap}.revision-info{flex-basis:100%;text-align:right;font-size:12px}.revision-info a{display:inline-block;margin:0}.revision-info code{font-size:12px}.revision-info small{display:block;color:#bfd0da;font-size:12px}@media(max-width:600px){.revision-info{text-align:left}}
+
+.software-distribution{margin:24px 0 0}
