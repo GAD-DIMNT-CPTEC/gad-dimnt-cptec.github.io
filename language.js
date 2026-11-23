@@ -7,6 +7,7 @@ Object.assign(translations, {"Vídeos": {"en": "Videos", "es": "Vídeos"}, "06 /
 Object.assign(translations, {"Saiba mais": {"en": "Learn more", "es": "Más información"}});
 Object.assign(translations, {"Topo": {"en": "Top", "es": "Inicio"}});
 Object.assign(translations, {"Revisão": {"en": "Revision", "es": "Revisión"}, "Prévia com alterações locais": {"en": "Preview with local changes", "es": "Vista previa con cambios locales"}});
+Object.assign(translations, {"Contato com o administrador": {"en": "Contact the administrator", "es": "Contacto con el administrador"}});
 (() => {
  const select=document.getElementById('language');
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
@@ -51,6 +52,9 @@ Object.assign(translations, {"Revisão": {"en": "Revision", "es": "Revisión"}, 
  const images=[...document.querySelectorAll('img')].map(node=>({node,original:node.alt}));
  function apply(lang) {
   document.documentElement.lang=lang==='pt'?'pt-BR':lang;
+  const contact=document.getElementById('admin-contact');
+  const subjects={pt:'Site do Grupo de Assimilação de Dados',en:'Data Assimilation Group Website',es:'Sitio web del Grupo de Asimilación de Datos'};
+  if(contact)contact.href='mailto:carlos.bastarz@inpe.br?subject='+encodeURIComponent(subjects[lang]);
   select.value=lang;
   for(const item of nodes)item.node.textContent=lang==='pt'?item.original:translations[item.key][lang];
   const labels={pt:{language:'Idioma',dark:'Modo noturno',title:'GAD | Grupo de Assimilação de Dados · CPTEC/INPE'},en:{language:'Language',dark:'Dark mode',title:'GAD | Data Assimilation Group · CPTEC/INPE'},es:{language:'Idioma',dark:'Modo nocturno',title:'GAD | Grupo de Asimilación de Datos · CPTEC/INPE'}};
