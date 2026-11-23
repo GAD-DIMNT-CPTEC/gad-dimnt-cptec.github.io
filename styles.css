@@ -72,3 +72,5 @@ footer{flex-wrap:wrap}.revision-info{flex-basis:100%;text-align:right;font-size:
 /* Give navigation its own row so all seven links remain together. */
 @media(min-width:701px){header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 24px}.brand{grid-column:1;grid-row:1}.header-controls{grid-column:2;grid-row:1;margin-left:0}header nav{grid-column:1/-1;grid-row:2;display:flex;flex-wrap:nowrap;width:100%;gap:24px;justify-content:flex-start}header nav a{white-space:nowrap}}
 @media(min-width:701px) and (max-width:850px){header nav{gap:16px}header nav a{font-size:13px}}
+
+.software-organizations{display:flex;flex-direction:column;align-items:flex-end;gap:8px;margin:24px 0 0;text-align:right}
